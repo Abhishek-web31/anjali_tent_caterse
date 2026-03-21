@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@theme {
+  /* Using Gold/Amber as the primary accent color */
+  --color-brand-100: #fef3c7;
+  --color-brand-200: #fde68a;
+  --color-brand-300: #fcd34d;
+  --color-brand-400: #fbbf24;
+  --color-brand-500: #f59e0b; /* Primary Gold */
+  --color-brand-600: #d97706;
+  --color-brand-700: #b45309;
+  --color-brand-800: #92400e;
+  --color-brand-900: #78350f;
+  
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-slate-950 text-slate-300 antialiased selection:bg-brand-500 selection:text-slate-900;
+    font-family: var(--font-sans);
+  }
+}
+
+.glass {
+  @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-lg;
+}
+.glass-dark {
+  @apply bg-slate-900/60 backdrop-blur-md border border-slate-800 shadow-xl;
+}
