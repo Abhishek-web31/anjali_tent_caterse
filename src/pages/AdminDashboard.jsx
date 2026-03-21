@@ -4,6 +4,7 @@ import {
   LayoutDashboard, CalendarRange, Box, MessageSquare, 
   Users, CheckCircle, Package, Plus, Lock, Send, DollarSign, Wallet
 } from 'lucide-react';
+import CloudinaryUpload from '../components/CloudinaryUpload';
 
 const AdminDashboard = () => {
   const [isAdminAuth, setIsAdminAuth] = useState(false);
@@ -174,6 +175,23 @@ const AdminDashboard = () => {
                 <StatCard title="Dispatched Rentals" value={rentals.length} icon={<Package size={24} />} color="text-amber-400" bg="bg-amber-500/10" />
                 <StatCard title="Total Inquiries" value={inquiries.length} icon={<MessageSquare size={24} />} color="text-green-400" bg="bg-green-500/10" />
                 <StatCard title="Gross Income" value={`₹${bookings.reduce((acc, b) => acc + (b.paid_amount||0), 0)}`} icon={<DollarSign size={24} />} color="text-emerald-400" bg="bg-emerald-500/10" />
+              </div>
+
+              {/* CLOUDINARY UPLOAD QUICK ACTION */}
+              <div className="mb-10 p-6 md:p-8 bg-slate-900 border border-slate-800 rounded-3xl shadow-xl border-t-brand-500/30">
+                <h3 className="text-xl font-bold text-white mb-2">Upload Reference Image / Gallery Photo</h3>
+                <p className="text-slate-400 text-sm mb-6 max-w-2xl">Upload event photos directly to Cloudinary. It will give you a public URL that you can copy and use in your Gallery or anywhere else in the application.</p>
+                <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-center bg-slate-950 p-6 rounded-2xl border border-slate-800">
+                  <CloudinaryUpload 
+                    uploadType="image" 
+                    onUploadSuccess={(url) => { 
+                      prompt("Image Uploaded Successfully! Copy this URL to paste where needed:", url); 
+                    }} 
+                  />
+                  <div className="text-xs text-brand-400 break-words max-w-xs sm:max-w-md">
+                    ↑ Click here to select a file from your device. Upon success, a popup will show the URL.
+                  </div>
+                </div>
               </div>
             </motion.div>
           )}
