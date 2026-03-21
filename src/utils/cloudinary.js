@@ -8,7 +8,7 @@ export const uploadToCloudinary = async (file, fileType = 'image') => {
   const UPLOAD_PRESET = import.meta.env.VITE_UPLOAD_PRESET;
 
   // Endpoint depends on fileType: image, video, or raw
-  const url = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
+  const url = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/${fileType}/upload`;
 
   const formData = new FormData();
   formData.append('file', file);
