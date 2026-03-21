@@ -6,7 +6,8 @@ export const uploadToCloudinary = async (file, fileType = 'image') => {
   // Using VITE_ prefix for environment variables to ensure they are available in the production build
   const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
   const UPLOAD_PRESET = import.meta.env.VITE_UPLOAD_PRESET;
-
+  console.log("CLOUD NAME:", import.meta.env.VITE_CLOUD_NAME);
+  console.log("UPLOAD PRESET:", import.meta.env.VITE_UPLOAD_PRESET);
   // Endpoint depends on fileType: image, video, or raw
   const url = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/${fileType}/upload`;
 
