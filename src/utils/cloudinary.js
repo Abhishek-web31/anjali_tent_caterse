@@ -4,8 +4,8 @@
 
 export const uploadToCloudinary = async (file, fileType = 'image') => {
   // Replace these with your actual Cloudinary cloud name and upload preset
-  const CLOUD_NAME = 'dwohs6fpq';
-  const UPLOAD_PRESET = "anjali_tent_upload";
+  const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
+  const UPLOAD_PRESET = import.meta.env.VITE_UPLOAD_PRESET;
 
   // Endpoint depends on fileType: image, video, or raw
   const url = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
