@@ -55,7 +55,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="text-sm text-slate-500 font-semibold mb-1">Phone Number</p>
-                  <p className="text-lg font-bold text-slate-200">+91 98765 43210</p>
+                  <p className="text-lg font-bold text-slate-200">+91 6267361538 <br/>+91 7879623568</p>
                 </div>
               </div>
               
@@ -65,7 +65,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="text-sm text-slate-500 font-semibold mb-1">Email Address</p>
-                  <p className="text-lg font-bold text-slate-200">hello@anjalitent.com</p>
+                  <p className="text-lg font-bold text-slate-200">anjalitentjabalpur<wbr/>@gmail.com</p>
                 </div>
               </div>
               
@@ -75,7 +75,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="text-sm text-slate-500 font-semibold mb-1">Office Location</p>
-                  <p className="text-lg font-bold text-slate-200 max-w-[200px]">123 Celebration Ave, ST 12345</p>
+                  <p className="text-lg font-bold text-slate-200 max-w-[200px]">Rampur Chapar, Jabalpur, Madhya Pradesh</p>
                 </div>
               </div>
 
