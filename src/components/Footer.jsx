@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="bg-slate-950 text-slate-400 pt-16 pb-8 border-t border-slate-900">
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 lg:gap-16 mb-12">
-          
+
           {/* Brand */}
           <div className="col-span-1 md:col-span-1 lg:col-span-2">
             <Link to="/" className="flex items-center gap-2 mb-4 group">
@@ -51,15 +51,15 @@ const Footer = () => {
             <ul className="flex flex-col gap-4">
               <li className="flex items-start gap-3 group cursor-pointer">
                 <MapPin size={20} className="text-brand-500 shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
-                <span className="group-hover:text-brand-100 transition-colors">123 Celebration Avenue, ST 12345</span>
+                <span className="group-hover:text-brand-100 transition-colors">Rampur Chapar Jabalpur Madhya Pradesh</span>
               </li>
               <li className="flex items-center gap-3 group cursor-pointer">
                 <Phone size={20} className="text-brand-500 shrink-0 group-hover:scale-110 transition-transform" />
-                <span className="group-hover:text-brand-100 transition-colors">+91 98765 43210</span>
+                <span className="group-hover:text-brand-100 transition-colors">+91 6267361538  +91 7879623568</span>
               </li>
               <li className="flex items-center gap-3 group cursor-pointer">
                 <Mail size={20} className="text-brand-500 shrink-0 group-hover:scale-110 transition-transform" />
-                <span className="group-hover:text-brand-100 transition-colors">info@anjalitent.com</span>
+                <span className="group-hover:text-brand-100 transition-colors">anjalitentjabalpur@gmail.com</span>
               </li>
             </ul>
           </div>
@@ -67,7 +67,7 @@ const Footer = () => {
         </div>
 
         <div className="h-px w-full bg-slate-900 mb-8"></div>
-        
+
         <div className="flex flex-col md:flex-row items-center justify-between text-sm text-slate-600">
           <p>&copy; {new Date().getFullYear()} Anjali Tent & Caterers. All rights reserved.</p>
           <div className="flex gap-6 mt-4 md:mt-0">
