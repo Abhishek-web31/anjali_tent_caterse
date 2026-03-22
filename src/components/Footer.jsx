@@ -10,11 +10,11 @@ const Footer = () => {
           {/* Brand */}
           <div className="col-span-1 md:col-span-1 lg:col-span-2">
             <Link to="/" className="flex items-center gap-2 mb-4 group">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-brand-500 to-amber-300 flex items-center justify-center text-slate-900 group-hover:shadow-[0_0_15px_rgba(245,158,11,0.5)] transition-all">
-                <Tent size={20} />
+              <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-600 to-brand-400 flex items-center justify-center text-slate-950 group-hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] transition-all duration-500">
+                <Tent size={24} />
               </div>
-              <span className="font-bold text-2xl tracking-tight text-white drop-shadow-md">
-                Anjali Tent
+              <span className="font-serif font-bold text-3xl tracking-tighter text-white drop-shadow-lg">
+                Anjali <span className="text-brand-500">Tent</span>
               </span>
             </Link>
             <p className="text-slate-500 leading-relaxed mb-6 max-w-md">
@@ -35,7 +35,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-white font-bold text-lg mb-4">Quick Links</h3>
+            <h3 className="text-white font-serif font-bold text-xl mb-6 tracking-wide underline decoration-brand-500/30 decoration-2 underline-offset-8">Quick Links</h3>
             <ul className="flex flex-col gap-3">
               <li><Link to="/" className="hover:text-brand-400 transition-colors">Home</Link></li>
               <li><Link to="/gallery" className="hover:text-brand-400 transition-colors">Gallery</Link></li>
@@ -47,7 +47,7 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h3 className="text-white font-bold text-lg mb-4">Contact</h3>
+            <h3 className="text-white font-serif font-bold text-xl mb-6 tracking-wide underline decoration-brand-500/30 decoration-2 underline-offset-8">Contact</h3>
             <ul className="flex flex-col gap-4">
               <li className="flex items-start gap-3 group cursor-pointer">
                 <MapPin size={20} className="text-brand-500 shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />

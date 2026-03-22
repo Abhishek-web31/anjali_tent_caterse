@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
   const bgImages = [
-    "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1478146896981-b80fe463b330?auto=format&fit=crop&w=2000&q=80",
+    "https://annielane.ca/wp-content/uploads/2024/01/black-tent-liner-ceiling-with-chandeliers-halloween-1.jpg?w=2048",
+    "https://tse1.mm.bing.net/th/id/OIP.iZVDb1JC10Ghi63c89F4RwHaE8?cb=thfc1&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "https://d397bfy4gvgcdm.cloudfront.net/130202-0166-AD-Hotel-Irvine-Wedding-Photography.jpeg",
     "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=2000&q=80"
   ];
   const [currentBg, setCurrentBg] = useState(0);
@@ -63,14 +63,14 @@ const Home = () => {
         <div className="absolute inset-0 z-0 bg-slate-950 overflow-hidden">
           <div className="absolute inset-0 bg-slate-950/80 mix-blend-multiply z-10" />
           <AnimatePresence>
-            <motion.img 
+            <motion.img
               key={currentBg}
               src={bgImages[currentBg]}
               initial={{ opacity: 0, scale: 1.05 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 3, ease: "easeInOut" }}
-              alt="Beautiful Event Structure" 
+              alt="Beautiful Event Structure"
               className="absolute inset-0 w-full h-full object-cover z-0"
             />
           </AnimatePresence>
@@ -82,30 +82,33 @@ const Home = () => {
               <Star size={16} className="text-brand-400 text-shadow-sm" />
               <span className="text-sm font-medium tracking-wide">Premier Event Architects</span>
             </motion.div>
-            
-            <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6 leading-tight drop-shadow-xl">
-              Turn Your Dream Event <br className="hidden md:block" />
-              Into <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-300 to-brand-500">Reality</span>
+
+            <motion.h1 variants={itemVariants} className="text-5xl md:text-8xl font-serif font-bold tracking-tighter text-white mb-8 leading-[1.1] drop-shadow-2xl text-glow">
+              Elevating Your <br className="hidden md:block" />
+              {/* Special <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-300 via-brand-500 to-brand-300 gold-shimmer bg-[length:200%_auto]">Moments</span> */}
             </motion.h1>
-            
+
             <motion.p variants={itemVariants} className="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl font-light leading-relaxed">
               Anjali Tent & Caterers provides premium end-to-end event solutions. From majestic tents to exquisite catering, we make your special day truly unforgettable.
             </motion.p>
-            
+
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4">
               <Link to="/contact" className="px-8 py-4 rounded-full text-lg font-bold text-slate-900 bg-gradient-to-r from-brand-500 to-brand-400 hover:from-brand-400 hover:to-brand-300 shadow-[0_0_30px_rgba(245,158,11,0.3)] transition-all hover:scale-105 flex items-center justify-center gap-2 group">
                 Book Now
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link to="/gallery" className="px-8 py-4 rounded-full text-lg font-medium text-white bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/10 transition-all hover:scale-105">
-                View Gallery
+                Explore Gallery
+              </Link>
+              <Link to="/client-dashboard" className="px-8 py-4 rounded-full text-lg font-medium text-brand-400 bg-brand-500/10 hover:bg-brand-500/20 backdrop-blur-md border border-brand-500/20 transition-all hover:scale-105 flex items-center justify-center gap-2">
+                Track My Event <CheckCircle size={18} />
               </Link>
             </motion.div>
           </motion.div>
         </div>
-        
+
         {/* Scroll indicator */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
@@ -135,11 +138,12 @@ const Home = () => {
       <section id="services" className="py-24 bg-slate-950 relative">
         <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-brand-500/10 rounded-bl-full blur-[120px] -z-10" />
         <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-slate-600/10 rounded-tr-full blur-[120px] -z-10" />
-        
+
         <div className="container mx-auto px-6 max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4">Our Premium Services</h2>
-            <p className="text-slate-400 max-w-2xl mx-auto text-lg">We offer comprehensive event solutions tailored to your unique requirements, ensuring every detail is perfect.</p>
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-6 text-glow">Our Bespoke Services</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-transparent via-brand-500 to-transparent mx-auto mb-6"></div>
+            <p className="text-slate-400 max-w-2xl mx-auto text-lg font-light italic">Artisan event solutions tailored for those who appreciate the finer details.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -156,16 +160,16 @@ const Home = () => {
                 <div className="absolute top-0 right-0 p-8 opacity-0 group-hover:opacity-[0.03] transition-opacity duration-300 text-brand-500">
                   {service.icon}
                 </div>
-                
+
                 <div className="w-16 h-16 rounded-2xl bg-brand-500/10 flex items-center justify-center mb-6 text-brand-400 group-hover:scale-110 group-hover:bg-brand-500 group-hover:text-slate-900 transition-all duration-300">
                   {service.icon}
                 </div>
-                
-                <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>
-                <p className="text-slate-400 mb-6 leading-relaxed">
+
+                <h3 className="text-2xl font-serif font-bold text-white mb-4 group-hover:text-brand-300 transition-colors">{service.title}</h3>
+                <p className="text-slate-500 mb-8 leading-relaxed font-light">
                   {service.desc}
                 </p>
-                
+
                 <ul className="space-y-3">
                   {service.features.map((feature, i) => (
                     <li key={i} className="flex items-center gap-3 text-slate-300 font-medium">
@@ -184,7 +188,7 @@ const Home = () => {
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-slate-900 z-0" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-500/10 rounded-full blur-[120px] z-0 pointer-events-none" />
-        
+
         <div className="container mx-auto px-6 max-w-4xl relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}

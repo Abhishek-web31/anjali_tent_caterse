@@ -5,14 +5,35 @@ import { Tent, Lock, Mail, User, Phone, MapPin, ArrowRight } from 'lucide-react'
 
 const Register = () => {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', address: '', password: '' });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    if(formData.name && formData.email && formData.password) {
-      // In a real app we'd fetch POST to /users/ backend here
-      // fetch('http://localhost:8000/users/', { method: 'POST', body: JSON.stringify(formData) })
-      navigate('/dashboard');
+    setLoading(true);
+    setError('');
+    
+    try {
+      const res = await fetch('https://anjali-tent-backend.onrender.com/clients/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      
+      const data = await res.json();
+      
+      if (!res.ok) {
+        throw new Error(data.detail || 'Registration failed');
+      }
+      
+      setSuccess(true);
+      setTimeout(() => navigate('/login'), 2000);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -38,6 +59,18 @@ const Register = () => {
           <h2 className="text-3xl font-bold text-center text-white mb-2">Create Account</h2>
           <p className="text-center text-slate-400 mb-8 font-medium">Join us to manage your perfect event.</p>
           
+          {error && (
+            <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 text-red-500 text-sm rounded-xl text-center font-bold">
+              {error}
+            </div>
+          )}
+
+          {success && (
+            <div className="mb-6 p-4 bg-green-500/10 border border-green-500/20 text-green-500 text-sm rounded-xl text-center font-bold">
+              Registration Successful! Redirecting to login...
+            </div>
+          )}
+
           <form onSubmit={handleRegister} className="space-y-5">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div className="space-y-2">
@@ -118,10 +151,11 @@ const Register = () => {
 
             <button 
               type="submit" 
-              className="w-full py-4 rounded-xl bg-brand-500 hover:bg-brand-400 text-slate-950 font-bold text-lg shadow-[0_0_20px_rgba(245,158,11,0.3)] transition-all flex items-center justify-center gap-2 group mt-8"
+              disabled={loading || success}
+              className="w-full py-4 rounded-xl bg-brand-500 hover:bg-brand-400 text-slate-950 font-bold text-lg shadow-[0_0_20px_rgba(245,158,11,0.3)] transition-all flex items-center justify-center gap-2 group mt-8 disabled:opacity-50"
             >
-              Sign Up
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+              {loading ? "Creating Account..." : "Sign Up"}
+              {!loading && <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />}
             </button>
           </form>
 

@@ -6,11 +6,22 @@ const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '', service: 'General' });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-    setFormData({ name: '', email: '', phone: '', message: '', service: 'General' });
+    try {
+      const res = await fetch('https://anjali-tent-backend.onrender.com/inquiries/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      if (res.ok) {
+        setSubmitted(true);
+        setTimeout(() => setSubmitted(false), 5000);
+        setFormData({ name: '', email: '', phone: '', message: '', service: 'General' });
+      }
+    } catch (err) {
+      alert("Failed to send message. Please try again.");
+    }
   };
 
   return (
@@ -24,9 +35,9 @@ const Contact = () => {
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight"
+            className="text-5xl md:text-7xl font-serif font-bold text-white mb-6 tracking-tighter text-glow"
           >
-            Get In <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-brand-600">Touch</span>
+            Get In <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-300 to-brand-500 gold-shimmer bg-[length:200%_auto]">Touch</span>
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -45,7 +56,7 @@ const Contact = () => {
             <div className="absolute top-0 right-0 w-64 h-64 bg-brand-500/10 rounded-full blur-[60px]" />
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-slate-800/50 rounded-full blur-[60px]" />
             
-            <h3 className="text-3xl font-bold mb-8 relative z-10">Contact Information</h3>
+            <h3 className="text-3xl font-serif font-bold mb-8 relative z-10 text-glow">Contact Details</h3>
             <p className="text-slate-400 mb-12 relative z-10">Say something to start a live chat or hit us up on email.</p>
             
             <div className="space-y-8 relative z-10">

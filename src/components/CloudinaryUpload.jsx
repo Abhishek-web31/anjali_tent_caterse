@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { Upload, Loader2, Image as ImageIcon, Video } from 'lucide-react';
 import { uploadToCloudinary } from '../utils/cloudinary';
 
-const CloudinaryUpload = ({ onUploadSuccess, uploadType = 'image', className = "" }) => {
+const CloudinaryUpload = ({ onUploadSuccess, uploadType = 'image', category = "Tent", className = "" }) => {
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState(null);
-
+  
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -16,9 +16,9 @@ const CloudinaryUpload = ({ onUploadSuccess, uploadType = 'image', className = "
     try {
       const data = await uploadToCloudinary(file, uploadType);
       
-      // Pass the uploaded URL and full response data to the parent component
+      // Pass the uploaded URL, full response data, and selected category to the parent component
       if (onUploadSuccess) {
-        onUploadSuccess(data.secure_url, data);
+        onUploadSuccess(data.secure_url, category, data);
       }
     } catch (err) {
       setError(err.message || 'Error occurred during upload');
@@ -30,7 +30,7 @@ const CloudinaryUpload = ({ onUploadSuccess, uploadType = 'image', className = "
   };
 
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative ${className} space-y-4`}>
       <input
         type="file"
         id={`cloudinary-upload-${uploadType}`}
@@ -42,20 +42,20 @@ const CloudinaryUpload = ({ onUploadSuccess, uploadType = 'image', className = "
       
       <label
         htmlFor={`cloudinary-upload-${uploadType}`}
-        className={`flex items-center justify-center gap-2 px-6 py-3 border-2 border-dashed border-slate-700 bg-slate-900/50 rounded-xl cursor-pointer hover:border-brand-500 hover:bg-slate-800 transition-all ${
+        className={`flex items-center justify-center gap-3 px-6 py-4 border-2 border-dashed border-slate-700 bg-slate-900/50 rounded-2xl cursor-pointer hover:border-brand-500 hover:bg-slate-800 transition-all group ${
           isUploading ? 'opacity-50 cursor-not-allowed' : ''
         }`}
       >
         {isUploading ? (
-          <Loader2 size={20} className="animate-spin text-brand-500" />
+          <Loader2 size={24} className="animate-spin text-brand-500" />
         ) : uploadType === 'image' ? (
-          <ImageIcon size={20} className="text-slate-400" />
+          <ImageIcon size={24} className="text-slate-500 group-hover:text-brand-400 group-hover:scale-110 transition-all" />
         ) : (
-          <Video size={20} className="text-slate-400" />
+          <Video size={24} className="text-slate-500 group-hover:text-brand-400 group-hover:scale-110 transition-all" />
         )}
         
-        <span className="text-sm font-medium text-slate-300">
-          {isUploading ? 'Uploading...' : `Upload ${uploadType === 'image' ? 'Image' : 'Video'}`}
+        <span className="text-base font-semibold text-slate-300">
+          {isUploading ? 'Uploading to Cloudinary...' : `Upload to ${category}`}
         </span>
       </label>
 

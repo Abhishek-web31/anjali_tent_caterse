@@ -6,12 +6,41 @@ import { Tent, Lock, Mail, ArrowRight } from 'lucide-react';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if(email && password) {
-      navigate('/dashboard');
+    setLoading(true);
+    setError('');
+    
+    try {
+      const endpoint = isAdmin ? 'https://anjali-tent-backend.onrender.com/login/admin' : 'https://anjali-tent-backend.onrender.com/login/client';
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: "Login", email, password }) // name is dummy for schemas.AdminCreate
+      });
+      
+      const data = await res.json();
+      
+      if (!res.ok) {
+        throw new Error(data.detail || 'Login failed');
+      }
+      
+      if (isAdmin) {
+        localStorage.setItem('isAdminAuth', 'true');
+        navigate('/admin');
+      } else {
+        localStorage.setItem('clientData', JSON.stringify(data));
+        navigate('/client-dashboard');
+      }
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -39,6 +68,27 @@ const Login = () => {
           <h2 className="text-3xl font-bold text-center text-white mb-2">Welcome Back</h2>
           <p className="text-center text-slate-400 mb-8 font-medium">Log in to manage your events</p>
           
+          <div className="flex bg-slate-950 p-1 rounded-xl mb-8 border border-slate-800">
+            <button 
+              onClick={() => setIsAdmin(false)} 
+              className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${!isAdmin ? 'bg-brand-500 text-slate-950' : 'text-slate-500 hover:text-white'}`}
+            >
+              Client Login
+            </button>
+            <button 
+              onClick={() => setIsAdmin(true)} 
+              className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${isAdmin ? 'bg-brand-500 text-slate-950' : 'text-slate-500 hover:text-white'}`}
+            >
+              Admin Access
+            </button>
+          </div>
+
+          {error && (
+            <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 text-red-500 text-sm rounded-xl text-center font-bold">
+              {error}
+            </div>
+          )}
+
           <form onSubmit={handleLogin} className="space-y-6">
             <div className="space-y-2">
               <label className="text-sm font-semibold text-slate-400 ml-1">Email Address</label>
@@ -80,10 +130,11 @@ const Login = () => {
 
             <button 
               type="submit" 
-              className="w-full py-4 rounded-xl bg-brand-500 hover:bg-brand-400 text-slate-950 font-bold text-lg shadow-[0_0_20px_rgba(245,158,11,0.3)] transition-all flex items-center justify-center gap-2 group mt-8"
+              disabled={loading}
+              className="w-full py-4 rounded-xl bg-brand-500 hover:bg-brand-400 text-slate-950 font-bold text-lg shadow-[0_0_20px_rgba(245,158,11,0.3)] transition-all flex items-center justify-center gap-2 group mt-8 disabled:opacity-50"
             >
-              Sign In
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+              {loading ? "Verifying..." : "Sign In"}
+              {!loading && <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />}
             </button>
           </form>
 

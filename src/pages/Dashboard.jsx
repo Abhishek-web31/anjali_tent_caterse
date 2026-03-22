@@ -9,7 +9,7 @@ const Dashboard = () => {
   
   // Dummy Client ID for demonstration
   const CLIENT_ID = 1;
-  const API_URL = 'http://127.0.0.1:8000';
+  const API_URL = 'https://anjali-tent-backend.onrender.com';
 
   const [bookings, setBookings] = useState([
     { id: 101, event_date: "2024-05-15", venue: "Taj Gardens", event_type: "Wedding", status: "Confirmed", total_amount: 150000, paid_amount: 50000 },

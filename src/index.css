@@ -1,30 +1,55 @@
 @import "tailwindcss";
 
 @theme {
-  /* Using Gold/Amber as the primary accent color */
-  --color-brand-100: #fef3c7;
-  --color-brand-200: #fde68a;
-  --color-brand-300: #fcd34d;
-  --color-brand-400: #fbbf24;
-  --color-brand-500: #f59e0b; /* Primary Gold */
-  --color-brand-600: #d97706;
-  --color-brand-700: #b45309;
-  --color-brand-800: #92400e;
-  --color-brand-900: #78350f;
+  /* Using Champagne Gold as the primary accent color */
+  --color-brand-100: #fff9e6;
+  --color-brand-200: #ffefb3;
+  --color-brand-300: #ffe180;
+  --color-brand-400: #ffd24d;
+  --color-brand-500: #d4af37; /* Metallic Gold */
+  --color-brand-600: #b8932e;
+  --color-brand-700: #9c7c27;
+  --color-brand-800: #806620;
+  --color-brand-900: #644f19;
   
   --font-sans: "Inter", system-ui, sans-serif;
+  --font-serif: "Playfair Display", serif;
 }
 
 @layer base {
   body {
-    @apply bg-slate-950 text-slate-300 antialiased selection:bg-brand-500 selection:text-slate-900;
+    @apply bg-slate-950 text-slate-400 antialiased selection:bg-brand-500 selection:text-slate-900;
     font-family: var(--font-sans);
+  }
+  h1, h2, h3, h4, .font-serif {
+    font-family: var(--font-serif);
+    @apply tracking-tight;
   }
 }
 
 .glass {
-  @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-lg;
+  @apply bg-white/[0.03] backdrop-blur-xl border border-white/10 shadow-2xl;
+}
+.glass-gold {
+  @apply bg-brand-500/[0.05] backdrop-blur-xl border border-brand-500/20 shadow-2xl;
 }
 .glass-dark {
-  @apply bg-slate-900/60 backdrop-blur-md border border-slate-800 shadow-xl;
+  @apply bg-slate-950/40 backdrop-blur-2xl border border-white/[0.05] shadow-2xl;
 }
+
+.text-glow {
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+.gold-shimmer {
+  background: linear-gradient(110deg, #d4af37 8%, #fff9e6 18%, #d4af37 33%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s linear infinite;
+}
+
+@keyframes shimmer {
+  to {
+    background-position-x: -200%;
+  }
+}
+
